@@ -1,57 +1,11 @@
-name: CI Publish, with security check using Snyk
-
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name: Example workflow for Python using Snyk
+on: push
 jobs:
   security:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
+        uses: snyk/actions/python@master
         env:
-          SNYK_TOKEN&#58; &#36;&#123;&#123; secrets.SNYK_TOKEN &#125;&#125;
-        with:
-          command: monitor
-
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-      node-version: [10.x, 12.x, 14.x, 15.x]
-
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      - name: Use Node.js &#36;&#123;&#123; matrix.node-version &#125;&#125;
-        uses: actions/setup-node@v2
-        with:
-          node-version&#58; &#36;&#123;&#123; matrix.node-version &#125;&#125;
-      - name: Install dependencies
-        run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
-
-  publish:
-    needs: [security, build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '15.x'
-          registry-url: 'https://registry.npmjs.org'
-      - name: Install dependencies
-        run: npm ci
-      - name: Publish
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN&#58; &#36;&#123;&#123; secrets.NPM_TOKEN &#125;&#125;
+          SNYK_TOKEN: ${{ secrets.a79a0c54-63f6-4b36-9f94-90b19aa5269e }}
