@@ -5,9 +5,6 @@
 
 [![Typer version](https://badge.fury.io/py/typer.svg)](https://badge.fury.io/py/typer)
 ![Python Version](https://img.shields.io/badge/python-3.12.1-yellow)
-![Snyk workflow](https://github.com/zachdehooge/Database-Application/actions/workflows/snyk-security.yml/badge.svg)
-![Python workflow](https://github.com/zachdehooge/Database-Application/actions/workflows/python-app.yml/badge.svg)
-
 
 
 A Python application that uses the `Typer` framework to work with SQLITE databases.
